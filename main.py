@@ -20,10 +20,10 @@ class GUI:
         self.label = tk.Label(root, text="Select a directory to organize:", bg="#222324", fg="white")
         self.label.pack(pady=10)
 
-        self.select_button = tk.Button(root, text="Select Directory", command=self.select_directory, bg="grey", fg="white")
+        self.select_button = tk.Button(root, text="Select Directory", command=self.select_directory, bg="#222324", fg="white")
         self.select_button.pack(pady=10)
 
-        self.organize_button = tk.Button(root, text="Organize Files", command=self.organize_files, state=tk.DISABLED, bg="grey", fg="white")
+        self.organize_button = tk.Button(root, text="Organize Files", command=self.organize_files, state=tk.DISABLED, bg="#222324", fg="white")
         self.organize_button.pack(pady=10)
 
         self.directory = ""
