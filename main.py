@@ -94,6 +94,7 @@ class FileOrganisor:
 
     def OrganiseFiles(self, directory):
         for extension, folder_name in self.file_extensions.items():
+            
             files = [f for f in os.listdir() if f.lower().endswith(extension)]
 
             if files:
@@ -103,8 +104,20 @@ class FileOrganisor:
                 for file in files:
                     source_path = os.path.join(directory, file)
                     destination_path = os.path.join(folder_path, file)
-                    shutil.move(source_path, destination_path)
-                    print(f"Moved {file} to {folder_name} folder")
+                    
+                    if os.path.exists(destination_path):
+                        response = messagebox.askyesno(
+                            "Duplicate File",
+                            f"The file {file} already exists in {folder_name} folder. Do you want to replace it?"
+                        )
+                        if response:
+                            shutil.move(source_path, destination_path)
+                            print(f"Replaced {file} in {folder_name} folder")
+                        else:
+                            print(f"Skipped {file}, keeping original")
+                    else:
+                        shutil.move(source_path, destination_path)
+                        print(f"Moved {file} to {folder_name} folder")
 
 if __name__ == '__main__':
     root = tk.Tk()
